@@ -33,7 +33,9 @@ class Scraping
     open_date = page.at('.date span').inner_text
 
     # 取得した情報をデータベースに格納する
-    Product.create(title: title, image_url: image_url, director: director, open_date_string: open_date, open_date: open_date)
+    product = Product.where(title: title, image_url: image_url, director: director, open_date_string: open_date).first_or_initialize
+    product.save
+    # Product.create(title: title, image_url: image_url, director: director, open_date_string: open_date, open_date: open_date)
 
     # コメント
     # date型変数(open_date)にそのまま日付を渡してもDBには登録されない。
