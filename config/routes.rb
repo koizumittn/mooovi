@@ -4,6 +4,7 @@ TechReviewSite::Application.routes.draw do
     collection do
       get 'search'
     end
+    resources :reviews, only: :new
   end
 
   root 'products#index'
