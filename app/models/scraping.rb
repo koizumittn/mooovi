@@ -5,10 +5,13 @@ class Scraping
   def self.movie_urls
     # Mechanizeインスタンスを生成
     agent = Mechanize.new
+    next_url = ""
+
+    while true do
 
     # 一覧ページのオブジェクトを取得
-    page = agent.get(@@base_url)
-
+    page = agent.get(@@base_url + next_url)
+    puts @@base_url + next_url
     # 各個別ページのリンクを取得
     elements = page.search('.entry-title a')
 
@@ -17,9 +20,14 @@ class Scraping
       link = ele.get_attribute("href")
       get_product(link)
     end
-  end
 
-  def self.get_product(link)
+    # Nextが存在しなかったらループを抜ける
+    next_url = page.at('.next a').get_attribute("href")
+    break unless next_url
+  end
+end
+
+def self.get_product(link)
     # Mechanizeインスタンスを生成
     agent = Mechanize.new
 
