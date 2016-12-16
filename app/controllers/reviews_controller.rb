@@ -1,5 +1,7 @@
 class ReviewsController < RankingController
 
+  before_action :authenticate_user! , except: :create
+
   def new
     # form_forダグに渡すモデルインスタンスを生成
     @product = Product.find(params[:product_id])
