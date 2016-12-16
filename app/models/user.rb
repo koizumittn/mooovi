@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image,
     content_type: [ "image/jpg", "image/png", "image/jpeg" ]
 
+  has_many :reviews
+
 end
