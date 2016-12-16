@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :nickname, presence: true
+
   has_attached_file :image,
     style: { mudium: "300x300#", thumb: "100x100#" }
   validates_attachment_content_type :image,
