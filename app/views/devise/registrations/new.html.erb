@@ -17,6 +17,13 @@
           <div class="label"><%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => 'パスワードを入力（確認）' %></div>
 
+          <div class="label"><%= f.label :Nickname %><br />
+          <%= f.text_field :nickname, autocomplete: "off", :placeholder => 'ニックネームを入力' %></div>
+
+          <div class="label"><%= f.label :Image %><br />
+          <%= f.file_field :image %></div>
+
+
           <div class="submit">
           <div class="actions">
           <%= f.submit %>
